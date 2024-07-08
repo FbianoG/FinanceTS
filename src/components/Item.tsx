@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './Item.css'
+import { Item } from '../App'
 
 interface ListProps {
     list: any
@@ -9,24 +10,18 @@ interface ListProps {
     setShowModalInclude: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
-
 const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElementEdit, setShowModalInclude }) => {
-
 
     const [filter, setFilter] = useState<string>()
     const [listFilter, setListFilter] = useState<any>([])
 
-
     useEffect(() => {
-        let newFilter
         if (!filter) return
         if (filter === 'value') setListFilter([...list].sort((a, b) => a.value - b.value))
-        if (filter === 'date') setListFilter([...list].sort((a, b) => new Date(a.date) - new Date(b.date)))
+        if (filter === 'date') setListFilter([...list].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()))
         if (filter === 'name') setListFilter([...list].sort((a, b) => a.name.localeCompare(b.name)))
         if (filter === 'category') setListFilter([...list].sort((a, b) => a.category.localeCompare(b.category)))
         if (filter === 'type') setListFilter([...list].sort((a, b) => a.type.localeCompare(b.type)))
-
     }, [filter])
 
 
@@ -43,7 +38,7 @@ const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElem
                 <button title='Incluir item' onClick={() => setShowModalInclude(true)}>➕</button>
             </div>
             <div className="list">
-                {listFilter.map(element => (
+                {listFilter.map((element: Item) => (
                     <div className="item" key={element.id}>
                         <span>{element.name}</span>
                         <span>R${(element.value).toFixed(2)}</span>
@@ -55,9 +50,7 @@ const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElem
                     </div>
                 ))}
             </div>
-
         </div>
-
     )
 }
 

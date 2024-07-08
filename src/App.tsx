@@ -5,34 +5,24 @@ import Modal from './components/Modal'
 import ListItem from './components/Item';
 import Chart from './components/Chart';
 
-
+export interface Item {
+  id: string
+  name: string
+  value: number
+  date: string
+  category: string
+  type: string
+}
 
 export default function App() {
 
-  const [inputName, setInputName] = useState<string>('')
-  const [inputCategory, setInputCategory] = useState<string>('educação')
-  const [inputDate, setInputDate] = useState<string>('')
-  const [inputValue, setInputValue] = useState<number>(0)
-  const [inputType, setInputType] = useState<'entrada' | 'saída'>('entrada')
-
   const [showModal, setShowModal] = useState<false | true>(false)
   const [showModalInclude, setShowModalInclude] = useState<false | true>(false)
-  const [elementEdit, setElementEdit] = useState<Item>()
-  const [elementIndex, setElementIndex] = useState<number>()
-
-
+  const [elementEdit, setElementEdit] = useState<Item | null>(null)
 
   const [lista, setLista] = useState<Item[]>([])
 
 
-  type Item = {
-    id: string
-    name: string
-    value: number
-    date: string
-    category: string
-    type: string
-  }
 
   const includeValores = (e: any) => {
     e.preventDefault()
@@ -45,8 +35,6 @@ export default function App() {
       category: field.category.value,
       type: field.type.value
     }
-
-    console.log(item)
     setLista([...lista, item])
     setShowModalInclude(false)
   }
@@ -57,24 +45,21 @@ export default function App() {
     setLista(newList)
   }
 
-  const editItem = (e: any, id: string) => {
+  const editItem = (e: React.FormEvent<HTMLFormElement>, id: any) => {
     e.preventDefault()
-
+    const form = e.currentTarget;
     const item: Item = {
       id: id,
-      name: e.target.name.value,
-      value: Number(e.target.value.value),
-      date: e.target.date.value,
-      category: e.target.category.value,
-      type: e.target.type.value
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      value: Number((form.elements.namedItem('value') as HTMLInputElement).value),
+      date: (form.elements.namedItem('date') as HTMLInputElement).value,
+      category: (form.elements.namedItem('category') as HTMLInputElement).value,
+      type: (form.elements.namedItem('type') as HTMLInputElement).value,
     }
-
     const newList = lista.map((element) => {
       return id === element.id ? item : element
     })
-
-    setLista(newList.sort((a: any, b: any) => new Date(a.date) - new Date(b.date)))
-
+    setLista(newList.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()))
     setShowModal(false)
   }
 
@@ -99,14 +84,6 @@ export default function App() {
     const rec = entradas.reduce((acc, att) => acc + att.value, 0)
     return rec
   }
-
-
-  const handleShowModal = (e) => {
-
-  }
-
-
-
 
   return (
     <>
@@ -134,7 +111,7 @@ export default function App() {
       <ListItem list={lista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />
 
 
-      {showModal && <Modal type='edit' elementEdit={elementEdit} onSubmit={editItem} onClick={setShowModal} />}
+      {showModal && elementEdit && <Modal type='edit' elementEdit={elementEdit} onSubmit={(e) => editItem(e, elementEdit.id)} onClick={setShowModal} />}
       {showModalInclude && <Modal type='include' onSubmit={includeValores} onClick={setShowModalInclude} />}
 
     </>

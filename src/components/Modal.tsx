@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                     <h2>Editar Item</h2>
                     <input type='text' name='name' defaultValue={elementEdit?.name} placeholder='Nome' required />
                     <input type='date' name='date' defaultValue={elementEdit?.date} required />
-                    <input type='number' name='value' defaultValue={elementEdit?.value} placeholder='R$' required/>
+                    <input type='number' name='value' defaultValue={elementEdit?.value} placeholder='R$' required />
                     <select name='category' defaultValue={elementEdit?.category} >
                         <option value="educação">Educação</option>
                         <option value="comida">Comida</option>
