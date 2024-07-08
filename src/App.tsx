@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import './App.css'
-import Modal from './components/Modal'
-import ListItem from './components/Item';
-import Chart from './components/Chart';
+// import Modal from './components/Modal'
+// import ListItem from './components/Item';
+// import Chart from './components/Chart';
 
 export interface Item {
   id: string
@@ -16,52 +16,52 @@ export interface Item {
 
 export default function App() {
 
-  const [showModal, setShowModal] = useState<false | true>(false)
-  const [showModalInclude, setShowModalInclude] = useState<false | true>(false)
-  const [elementEdit, setElementEdit] = useState<Item | null>(null)
+  // const [showModal, setShowModal] = useState<false | true>(false)
+  // const [showModalInclude, setShowModalInclude] = useState<false | true>(false)
+  // const [elementEdit, setElementEdit] = useState<Item | null>(null)
 
   const [lista, setLista] = useState<Item[]>([])
 
 
 
-  const includeValores = (e: any) => {
-    e.preventDefault()
-    const field = e.target
-    const item: Item = {
-      id: uuidv4(),
-      name: field.name.value,
-      value: Number(field.value.value),
-      date: field.date.value,
-      category: field.category.value,
-      type: field.type.value
-    }
-    setLista([...lista, item])
-    setShowModalInclude(false)
-  }
+  // const includeValores = (e: any) => {
+  //   e.preventDefault()
+  //   const field = e.target
+  //   const item: Item = {
+  //     id: uuidv4(),
+  //     name: field.name.value,
+  //     value: Number(field.value.value),
+  //     date: field.date.value,
+  //     category: field.category.value,
+  //     type: field.type.value
+  //   }
+  //   setLista([...lista, item])
+  //   setShowModalInclude(false)
+  // }
 
-  const deleteItem = (i: string) => {
-    const newList = lista.filter(element => (element.id !== i))
-    if (newList.length == 0) localStorage.setItem('Lista', JSON.stringify(newList))
-    setLista(newList)
-  }
+  // const deleteItem = (i: string) => {
+  //   const newList = lista.filter(element => (element.id !== i))
+  //   if (newList.length == 0) localStorage.setItem('Lista', JSON.stringify(newList))
+  //   setLista(newList)
+  // }
 
-  const editItem = (e: React.FormEvent<HTMLFormElement>, id: any) => {
-    e.preventDefault()
-    const form = e.currentTarget;
-    const item: Item = {
-      id: id,
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      value: Number((form.elements.namedItem('value') as HTMLInputElement).value),
-      date: (form.elements.namedItem('date') as HTMLInputElement).value,
-      category: (form.elements.namedItem('category') as HTMLInputElement).value,
-      type: (form.elements.namedItem('type') as HTMLInputElement).value,
-    }
-    const newList = lista.map((element) => {
-      return id === element.id ? item : element
-    })
-    setLista(newList.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()))
-    setShowModal(false)
-  }
+  // const editItem = (e: React.FormEvent<HTMLFormElement>, id: any) => {
+  //   e.preventDefault()
+  //   const form = e.currentTarget;
+  //   const item: Item = {
+  //     id: id,
+  //     name: (form.elements.namedItem('name') as HTMLInputElement).value,
+  //     value: Number((form.elements.namedItem('value') as HTMLInputElement).value),
+  //     date: (form.elements.namedItem('date') as HTMLInputElement).value,
+  //     category: (form.elements.namedItem('category') as HTMLInputElement).value,
+  //     type: (form.elements.namedItem('type') as HTMLInputElement).value,
+  //   }
+  //   const newList = lista.map((element) => {
+  //     return id === element.id ? item : element
+  //   })
+  //   setLista(newList.sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()))
+  //   setShowModal(false)
+  // }
 
   useEffect(() => {
     // console.log(lista)
