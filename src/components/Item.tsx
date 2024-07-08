@@ -12,7 +12,7 @@ interface ListProps {
 
 const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElementEdit, setShowModalInclude }) => {
 
-    const [filter, setFilter] = useState<string>()
+    const [filter, setFilter] = useState<string>('')
     const [listFilter, setListFilter] = useState<any>([])
 
     useEffect(() => {
