@@ -103,16 +103,16 @@ export default function App() {
         </div>
       </div>
 
-      {lista && <Chart list={lista} />}
+      {/* {lista && <Chart list={lista} />} */}
 
 
 
 
-      {lista && <ListItem list={lista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />}
+      {/* {lista && <ListItem list={lista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />} */}
 
 
-      {showModal && elementEdit && <Modal type='edit' elementEdit={elementEdit} onSubmit={(e) => editItem(e, elementEdit.id)} onClick={setShowModal} />}
-      {showModalInclude && <Modal type='include' onSubmit={includeValores} onClick={setShowModalInclude} />}
+      {/* {showModal && elementEdit && <Modal type='edit' elementEdit={elementEdit} onSubmit={(e) => editItem(e, elementEdit.id)} onClick={setShowModal} />} */}
+      {/* {showModalInclude && <Modal type='include' onSubmit={includeValores} onClick={setShowModalInclude} />} */}
 
     </>
   )
