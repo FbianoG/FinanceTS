@@ -91,15 +91,15 @@ export default function App() {
       <div className="painel">
         <div className="painel__card">
           <h3 className="painel__card-title">Receitas</h3>
-          <span style={{ color: '#37ad37' }}>R$ +{receita().toFixed(2)}</span>
+          <span style={{ color: '#37ad37' }}>R$ +{lista && lista.length > 0 && receita().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Despesas</h3>
-          <span style={{ color: '#f13333' }}>R$ -{despesa().toFixed(2)}</span>
+          <span style={{ color: '#f13333' }}>R$ -{lista && lista.length > 0 && despesa().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Saldo</h3>
-          <span style={{ color: '#1e90ff' }}>R$ {(receita() - despesa()).toFixed(2)}</span>
+          <span style={{ color: '#1e90ff' }}>R$ {lista && lista.length > 0 && (receita() - despesa()).toFixed(2)}</span>
         </div>
       </div>
 
