@@ -12,14 +12,14 @@ const Chart: React.FC<ChartProps> = ({ list }) => {
 
     const month = new Date().getMonth() + 1
 
-    const entrada = list.filter((element: any) => element.type === 'entrada')
-    const saida = list.filter((element: any) => element.type === 'saída')
+    const entrada = list?.filter((element: any) => element.type === 'entrada')
+    const saida = list?.filter((element: any) => element.type === 'saída')
 
     const getEntrada = (e: number) => {
         let mes: number
         mes = month - e
         if (mes <= 0) mes = 12 - Math.abs(mes)
-        const newList = entrada.filter((element: Item) => (new Date(element.date).getUTCMonth() + 1) === mes)
+        const newList = entrada?.filter((element: Item) => (new Date(element.date).getUTCMonth() + 1) === mes)
         return newList.reduce((acc: number, att: Item) => acc + att.value, 0)
     }
 
@@ -27,7 +27,7 @@ const Chart: React.FC<ChartProps> = ({ list }) => {
         let mes: number
         mes = month - e
         if (mes <= 0) mes = 12 - Math.abs(mes)
-        const newList = saida.filter((element: Item) => (new Date(element.date).getUTCMonth() + 1) === mes)
+        const newList = saida?.filter((element: Item) => (new Date(element.date).getUTCMonth() + 1) === mes)
         return newList.reduce((acc: number, att: Item) => acc + att.value, 0)
 
     }
