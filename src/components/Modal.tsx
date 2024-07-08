@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
 
         <div className="modal">
             {type === 'edit' &&
-                <form className="modal__content" onSubmit={(e) => onSubmit(e, elementEdit.id)}>
+                <form className="modal__content" onSubmit={(e) => onSubmit(e)}>
                     <h2>Editar Item</h2>
                     <input type='text' name='name' defaultValue={elementEdit?.name} placeholder='Nome' required />
                     <input type='date' name='date' defaultValue={elementEdit?.date} required />
