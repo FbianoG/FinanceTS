@@ -63,10 +63,10 @@
 
     .item__header {
         width: max-content !important;
-        grid-template-columns: 150px 100px 150px 30px 200px 30px 30px !important;
+        grid-template-columns: 150px 100px 150px 30px 200px 50px 50px !important;
     }
 
     .item {
-        grid-template-columns: 150px 100px 150px 30px 200px 30px 30px !important;
+        grid-template-columns: 150px 100px 150px 30px 200px 50px 50px !important;
     }
 }

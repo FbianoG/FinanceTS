@@ -12,7 +12,7 @@
     font-weight: 500;
     color: #fdfdfd;
     display: grid;
-    grid-template-columns: 300px 100px 150px 30px 200px 30px 30px;
+    grid-template-columns: 300px 100px 150px 30px 200px 50px 50px;
     text-align: center;
     box-shadow: 0 3px 5px #0002;
     border-top: 1px solid #0001;
@@ -33,7 +33,7 @@
     background: none;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     grid-column: span 2;
     cursor: pointer;
     transition: 300ms;
@@ -70,7 +70,7 @@
     padding: 20px 10px;
     color: #333;
     display: grid;
-    grid-template-columns: 300px 100px 150px 30px 200px 30px 30px;
+    grid-template-columns: 300px 100px 150px 30px 200px 50px 50px;
     text-align: center;
     justify-content: center;
     text-transform: capitalize;
@@ -86,6 +86,7 @@
     border: none;
     cursor: pointer;
     transition: 300ms;
+    font-size: 16px;
 
     &:hover {
         transform: scale(1.2);

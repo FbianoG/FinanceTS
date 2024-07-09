@@ -2,6 +2,7 @@ import './Chart.css'
 import { Item } from "../App";
 
 import { LineChart } from '@mui/x-charts/LineChart';
+import { useEffect, useState } from 'react';
 
 
 interface ChartProps {
@@ -48,9 +49,17 @@ const Chart: React.FC<ChartProps> = ({ list }) => {
         month.toString().padStart(2, '0'),
     ]
 
+
+    const [size, setSize] = useState<number>()
+
+    useEffect(() => {
+        if (innerWidth > 767) setSize(500)
+        else setSize(370)
+    }, [])
+
     return (
         <div className="chart">
-            <LineChart width={500} height={300} series={[{ data: eData, label: 'Entrada' }, { data: sData, label: 'Saída' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
+            <LineChart width={size} height={300} series={[{ data: eData, label: 'Entrada' }, { data: sData, label: 'Saída' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
         </div>
     )
 }

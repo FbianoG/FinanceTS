@@ -1,11 +1,13 @@
 .css-ltrqdd-MuiMarkElement-root {
     /* stroke: #f13333 !important; */
 }
+
 .css-a8rcf6-MuiLineElement-root {
     /* stroke: #f13333 !important; */
 }
 
 .chart {
-    padding: 50px 0 ;
-    margin: 0 auto ;
+    padding: 50px 0;
+    margin: 0 auto;
+    max-width: 100%;
 }

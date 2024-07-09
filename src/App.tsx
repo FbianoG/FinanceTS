@@ -31,9 +31,7 @@ export default function App() {
 
   useEffect(() => {
     const getList = localStorage.getItem('Lista');
-    if (getList) {
-      setLista(JSON.parse(getList));
-    }
+    if (getList) setLista(JSON.parse(getList))
   }, [])
 
   const includeValores = (e: any) => {
