@@ -53,6 +53,7 @@
     border-radius: 5px;
     outline: none;
     color: #333;
+    text-transform: capitalize;
 
     &:focus {
         border-color: #1e90ff;

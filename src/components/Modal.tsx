@@ -9,6 +9,9 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) => {
 
+
+    const itemCategory = ['comida', 'compras', 'contas', 'educação', 'lazer', 'saúde', 'trabalho', 'veículo', 'outros']
+
     return (
 
         <div className="modal">
@@ -19,13 +22,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                     <input type='date' name='date' defaultValue={elementEdit?.date} required />
                     <input type='number' name='value' defaultValue={elementEdit?.value} placeholder='R$' required />
                     <select name='category' defaultValue={elementEdit?.category} >
-                        <option value="educação">Educação</option>
-                        <option value="comida">Comida</option>
-                        <option value="lazer">Lazer</option>
-                        <option value="saúde">Saúde</option>
-                        <option value="veículo">Veículo</option>
-                        <option value="trabalho">Trabalho</option>
-
+                        {itemCategory.map(element => <option value={element}>{element}</option>)}
                     </select>
                     <select name='type' defaultValue={elementEdit?.type}>
                         <option value="entrada">Entrada</option>
@@ -43,15 +40,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                     <input type='date' name='date' required />
                     <input type='number' name='value' placeholder='R$' required />
                     <select name='category'  >
-                        <option value="comida">Comida</option>
-                        <option value="compras">Compras</option>
-                        <option value="educação">Educação</option>
-                        <option value="lazer">Lazer</option>
-                        <option value="saúde">Saúde</option>
-                        <option value="trabalho">Trabalho</option>
-                        <option value="veículo">Veículo</option>
-                        <option value="outros">Outros</option>
-
+                        {itemCategory.map(element => <option value={element}>{element}</option>)}
                     </select>
                     <select name='type'>
                         <option value="entrada">🔷 Entrada</option>
