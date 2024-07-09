@@ -48,7 +48,11 @@ const Chart: React.FC<ChartProps> = ({ list }) => {
         month.toString().padStart(2, '0'),
     ]
 
-    return <LineChart width={500} height={300} series={[{ data: eData, label: 'Entrada' }, { data: sData, label: 'Saída' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
+    return (
+        <div className="chart">
+            <LineChart width={500} height={300} series={[{ data: eData, label: 'Entrada' }, { data: sData, label: 'Saída' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
+        </div>
+    )
 }
 
 export default Chart

@@ -32,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                         <option value="saída">Saída</option>
                     </select>
                     <button type='submit'>Editar Item</button>
-                    <span onClick={() => onClick(false)}>❌</span>
+                    <span title='Fechar' onClick={() => onClick(false)}>❌</span>
                 </form>
             }
 
@@ -56,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                         <option value="saída">🔶 Saída</option>
                     </select>
                     <button type='submit'>Adicionar item</button>
-                    <span onClick={() => onClick(false)}>❌</span>
+                    <span title='Fechar' onClick={() => onClick(false)}>❌</span>
                 </form>
             }
 

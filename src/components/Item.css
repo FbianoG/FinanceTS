@@ -10,11 +10,14 @@
     width: 100%;
     padding: 20px 10px;
     font-weight: 500;
-    color: #333;
+    color: #fdfdfd;
     display: grid;
     grid-template-columns: 300px 100px 150px 30px 200px 30px 30px;
     text-align: center;
     box-shadow: 0 3px 5px #0002;
+    border-top: 1px solid #0001;
+    background: #2492ff;
+    justify-content: center;
 }
 
 .item__header span {
@@ -22,7 +25,7 @@
     transition: 300ms;
 
     &:hover {
-        opacity: 0.5;
+        opacity: 0.7;
     }
 }
 
@@ -69,6 +72,7 @@
     display: grid;
     grid-template-columns: 300px 100px 150px 30px 200px 30px 30px;
     text-align: center;
+    justify-content: center;
     text-transform: capitalize;
 }
 
