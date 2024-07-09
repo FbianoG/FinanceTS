@@ -74,14 +74,14 @@ export default function App() {
   }
 
   const receita = () => {
-    const entradas = lista.filter(element => element.type === 'entrada')
-    const rec = entradas.reduce((acc, att) => acc + att.value, 0)
+    const entradas = lista.filter((element: Item) => element.type === 'entrada')
+    const rec = entradas.reduce((acc: number, att: Item) => acc + att.value, 0)
     return rec
   }
 
   const despesa = () => {
-    const entradas = lista.filter(element => element.type === 'saída')
-    const rec = entradas.reduce((acc, att) => acc + att.value, 0)
+    const entradas = lista.filter((element: Item) => element.type === 'saída')
+    const rec = entradas.reduce((acc: number, att: Item) => acc + att.value, 0)
     return rec
   }
 
