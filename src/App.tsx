@@ -30,6 +30,7 @@ export default function App() {
   }, [lista])
 
   useEffect(() => {
+    if (!localStorage.getItem('Listaa')) return
     const getList: any = localStorage.getItem('Lista')
     setLista(JSON.parse(getList))
   }, [])
