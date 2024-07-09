@@ -101,24 +101,26 @@ export default function App() {
       <div className="painel">
         <div className="painel__card">
           <h3 className="painel__card-title">Receitas</h3>
-          <span style={{ color: '#37ad37' }}>R$ +{filterLista && receita().toFixed(2)}</span>
+          <span style={{ color: '#3b8a5d' }}><strong>R$</strong> +{filterLista && receita().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Despesas</h3>
-          <span style={{ color: '#f13333' }}>R$ -{filterLista && despesa().toFixed(2)}</span>
+          <span style={{ color: '#e9648e' }}><strong>R$</strong> -{filterLista && despesa().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Saldo</h3>
-          <span style={(receita() - despesa()) >= 0 ? { color: '#37ad37' } : { color: '#f13333' }}>R$ {filterLista && (receita() - despesa()).toFixed(2)}</span>
+          <span style={(receita() - despesa()) >= 0 ? { color: '#37ad37' } : { color: '#f13333' }}><strong>R$</strong> {filterLista && (receita() - despesa()).toFixed(2)}</span>
         </div>
       </div>
       {filterLista && <Chart list={filterLista} />}
 
-      <label htmlFor='' style={{ width: '200px', margin: '0 auto', }}>Começo:</label>
-      <input type='date' style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onChange={(e) => setDateInitial(new Date(e.target.value).toISOString())} />
-      <label htmlFor='' style={{ width: '200px', margin: '0 auto', }}>Fim:</label>
-      <input type='date' style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onChange={(e) => setDateEnd(new Date(e.target.value).toISOString())} />
-      <button style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onClick={calculeDate}>✔️</button>
+      <div className="dateControl">
+        <label htmlFor='1'>Início</label>
+        <label htmlFor='2' >Fim</label>
+        <input type='date' id='1' onChange={(e) => setDateInitial(new Date(e.target.value).toISOString())} />
+        <input type='date' id='2' onChange={(e) => setDateEnd(new Date(e.target.value).toISOString())} />
+        <button onClick={calculeDate}><i className="fa-solid fa-filter-circle-dollar"></i> Filtrar</button>
+      </div>
       {filterLista && <ListItem list={filterLista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />}
       {showModal && elementEdit && <Modal type='edit' elementEdit={elementEdit} onSubmit={(e) => editItem(e, elementEdit.id)} onClick={setShowModal} />}
       {showModalInclude && <Modal type='include' onSubmit={includeValores} onClick={setShowModalInclude} />}

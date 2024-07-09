@@ -35,7 +35,7 @@ const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElem
                 <span onClick={() => setFilter('date')}>Data</span>
                 <span onClick={() => setFilter('type')}>Tipo</span>
                 <span onClick={() => setFilter('category')}>Categoria</span>
-                <button title='Incluir item' onClick={() => setShowModalInclude(true)}>➕</button>
+                <button title='Incluir item' onClick={() => setShowModalInclude(true)}><i className="fa-solid fa-plus"></i></button>
             </div>
             <div className="list">
                 {listFilter.map((element: Item) => (
@@ -43,10 +43,10 @@ const ListItem: React.FC<ListProps> = ({ list, deleteItem, setShowModal, setElem
                         <span>{element.name}</span>
                         <span>R${(element.value).toFixed(2)}</span>
                         <span>{element.date.split('-').reverse().join('/')}</span>
-                        <span>{element.type === 'entrada' ? '🔷' : '🔶'}</span>
+                        <span>{element.type === 'entrada' ? <i style={{ color: '#46cb78' }} className="fa-solid fa-money-bill-trend-up"></i> : <i style={{ color: '#ed5252' }} className="fa-solid fa-arrow-trend-down"></i>}</span>
                         <span>{element.category}</span>
                         <button title='Editar item' onClick={() => { setShowModal(true); setElementEdit(element) }}>✏️</button>
-                        <button title='Excluir item' onClick={() => deleteItem(element.id)}>🗑️</button>
+                        <button title='Excluir item' onClick={() => deleteItem(element.id)}><i className="fa-solid fa-delete-left"></i></button>
                     </div>
                 ))}
             </div>

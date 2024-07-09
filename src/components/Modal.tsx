@@ -43,12 +43,14 @@ const Modal: React.FC<ModalProps> = ({ type, elementEdit, onSubmit, onClick }) =
                     <input type='date' name='date' required />
                     <input type='number' name='value' placeholder='R$' required />
                     <select name='category'  >
-                        <option value="educação">Educação</option>
                         <option value="comida">Comida</option>
+                        <option value="compras">Compras</option>
+                        <option value="educação">Educação</option>
                         <option value="lazer">Lazer</option>
                         <option value="saúde">Saúde</option>
-                        <option value="veículo">Veículo</option>
                         <option value="trabalho">Trabalho</option>
+                        <option value="veículo">Veículo</option>
+                        <option value="outros">Outros</option>
 
                     </select>
                     <select name='type'>

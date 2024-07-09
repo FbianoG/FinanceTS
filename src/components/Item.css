@@ -1,9 +1,13 @@
 .list__item {
-    width: 100%;
-    margin: auto 0 0 0;
+    width: max-content;
+    margin: 0 auto 30px;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 3px 3px 5px #0002;
+    
 }
 
 .item__header {
@@ -15,7 +19,6 @@
     grid-template-columns: 300px 100px 150px 30px 200px 50px 50px;
     text-align: center;
     box-shadow: 0 3px 5px #0002;
-    border-top: 1px solid #0001;
     background: #2492ff;
     justify-content: center;
 }
@@ -30,24 +33,28 @@
 }
 
 .item__header button {
-    background: none;
+    background: #fdfdfd;
     border: none;
     outline: none;
     font-size: 18px;
     grid-column: span 2;
     cursor: pointer;
     transition: 300ms;
+    border-radius: 5px;
+    color: #2492ff;
+    box-shadow: 3px 3px 5px #0003;
 
     &:hover {
-        transform: scale(1.2);
+        transform: scale(1.05);
     }
 }
 
 .list__item .list {
-    height: 315px;
+    height: 300px;
     overflow: auto;
     overflow-x: hidden;
     border: 1px solid #0001;
+
 
     &::-webkit-scrollbar {
         width: 7px;
@@ -68,12 +75,14 @@
     width: 100%;
     border-bottom: 1px solid #0001;
     padding: 20px 10px;
-    color: #333;
+    color: #666;
     display: grid;
     grid-template-columns: 300px 100px 150px 30px 200px 50px 50px;
     text-align: center;
     justify-content: center;
     text-transform: capitalize;
+    font-weight: 500;
+
 }
 
 .item span:nth-child(1),
@@ -90,5 +99,36 @@
 
     &:hover {
         transform: scale(1.2);
+    }
+
+    & i {
+        color: #e44141;
+    }
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .list__item .list {
+        width: max-content;
+    }
+
+    .list__item {
+        width: 100%;
+        overflow: auto;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .list__item .list {
+        height: 400px;
+    }
+
+    .item__header {
+        width: max-content !important;
+        grid-template-columns: 150px 100px 150px 30px 200px 50px 50px !important;
+    }
+
+    .item {
+        grid-template-columns: 150px 100px 150px 30px 200px 50px 50px !important;
     }
 }
