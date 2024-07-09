@@ -114,6 +114,7 @@
     }
 
     .list__item {
+        margin: 0;
         width: 100%;
         overflow: auto;
         border-radius: 10px 10px 0 0;
