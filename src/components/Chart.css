@@ -11,3 +11,10 @@
     margin: 0 auto;
     max-width: 100%;
 }
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .chart {
+        padding: 0 ;
+    }
+}

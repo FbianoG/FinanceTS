@@ -1,8 +1,11 @@
 .painel {
+    width: 100%;
+    max-width: 910px;
     padding: 20px 0 0;
+    margin: 0 auto ;
     display: flex;
     gap: 50px;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -25,7 +28,7 @@
     }
 
     &:nth-of-type(3) {
-        background: #d3e0fa;
+        background: #eee;
     }
 }
 
@@ -96,10 +99,8 @@
     box-shadow: 3px 3px 5px #0003;
 
     &:hover {
-        border-color: #fdfdfd;
-        color: #fdfdfd;
-        background: #2492ff;
-        box-shadow: none;
+
+        box-shadow: inset 3px 3px 5px #0002;
     }
 }
 
@@ -107,13 +108,33 @@
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
     .painel {
-        padding: 0;
-        gap: 0px;
+        width: 90%;
+        gap: 20px;
+        flex-wrap: nowrap;
+        justify-content: left;
+        overflow: auto;
+        padding: 20px 0 5px;
+
+
+        &::-webkit-scrollbar {
+        height: 4px;
+        }
+        
+        &::-webkit-scrollbar-track {
+        background: #eee;
+        border-radius: 2px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+        background: #2492ff;
+        border-radius: 2px;
+        }
+
     }
 
     .painel__card {
-        width: 100%;
-        border-radius: 0;
+        min-width: 100%;
+        border-radius: ;
         border: 1px solid #00000008;
     }
 
