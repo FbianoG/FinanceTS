@@ -30,9 +30,10 @@ export default function App() {
   }, [lista])
 
   useEffect(() => {
-    if (!localStorage.getItem('Listaa')) return
-    const getList: any = localStorage.getItem('Lista')
-    setLista(JSON.parse(getList))
+    const getList = localStorage.getItem('Lista');
+    if (getList) {
+      setLista(JSON.parse(getList));
+    }
   }, [])
 
   const includeValores = (e: any) => {
@@ -81,8 +82,8 @@ export default function App() {
   }
 
   const despesa = () => {
-    const entradas = lista.filter((element: Item) => element.type === 'saída')
-    const rec = entradas.reduce((acc: number, att: Item) => acc + att.value, 0)
+    const entradas = lista.filter(element => element.type === 'saída')
+    const rec = entradas.reduce((acc, att) => acc + att.value, 0)
     return rec
   }
 
