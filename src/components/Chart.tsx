@@ -59,7 +59,7 @@ const Chart: React.FC<ChartProps> = ({ list }) => {
 
     return (
         <div className="chart">
-            <LineChart width={size} height={300} series={[{ data: eData, label: 'Entrada' }, { data: sData, label: 'Saída' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
+            <LineChart width={size} height={300} series={[{ data: eData, label: 'Entradas' }, { data: sData, label: 'Saídas' },]} xAxis={[{ scaleType: 'point', data: xLabels }]} />
         </div>
     )
 }

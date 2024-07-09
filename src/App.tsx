@@ -20,17 +20,20 @@ export default function App() {
   const [showModalInclude, setShowModalInclude] = useState<false | true>(false)
   const [elementEdit, setElementEdit] = useState<Item | null>(null)
 
+  const [dateInitial, setDateInitial] = useState<string>()
+  const [dateEnd, setDateEnd] = useState<string>()
+
   const [lista, setLista] = useState<Item[]>([])
+  const [filterLista, setFilterList] = useState<Item[]>([])
 
   // Functions //
   useEffect(() => {
-    if (lista.length > 0) {
-      localStorage.setItem('Lista', JSON.stringify(lista))
-    }
+    if (lista.length > 0) localStorage.setItem('Lista', JSON.stringify(lista))
+    calculeDate()
   }, [lista])
 
   useEffect(() => {
-    const getList = localStorage.getItem('Lista');
+    const getList = localStorage.getItem('Lista')
     if (getList) setLista(JSON.parse(getList))
   }, [])
 
@@ -74,15 +77,23 @@ export default function App() {
   }
 
   const receita = () => {
-    const entradas = lista.filter((element: Item) => element.type === 'entrada')
-    const rec = entradas.reduce((acc: number, att: Item) => acc + att.value, 0)
+    const entradas = filterLista.filter((element) => element.type === 'entrada')
+    const rec = entradas.reduce((acc, att) => acc + att.value, 0)
     return rec
   }
 
   const despesa = () => {
-    const entradas = lista.filter(element => element.type === 'saída')
+    const entradas = filterLista.filter(element => element.type === 'saída')
     const rec = entradas.reduce((acc, att) => acc + att.value, 0)
     return rec
+  }
+
+  const calculeDate = () => {
+    if (dateEnd && dateInitial) {
+      const newList = lista.filter(element => { if (new Date(element.date) >= new Date(dateInitial) && new Date(element.date) <= new Date(dateEnd)) return element })
+      setFilterList(newList)
+    }
+    else setFilterList(lista)
   }
 
   return (
@@ -90,19 +101,25 @@ export default function App() {
       <div className="painel">
         <div className="painel__card">
           <h3 className="painel__card-title">Receitas</h3>
-          <span style={{ color: '#37ad37' }}>R$ +{lista && receita().toFixed(2)}</span>
+          <span style={{ color: '#37ad37' }}>R$ +{filterLista && receita().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Despesas</h3>
-          <span style={{ color: '#f13333' }}>R$ -{lista && despesa().toFixed(2)}</span>
+          <span style={{ color: '#f13333' }}>R$ -{filterLista && despesa().toFixed(2)}</span>
         </div>
         <div className="painel__card">
           <h3 className="painel__card-title">Saldo</h3>
-          <span style={{ color: '#1e90ff' }}>R$ {lista && (receita() - despesa()).toFixed(2)}</span>
+          <span style={(receita() - despesa()) >= 0 ? { color: '#37ad37' } : { color: '#f13333' }}>R$ {filterLista && (receita() - despesa()).toFixed(2)}</span>
         </div>
       </div>
-      {lista && <Chart list={lista} />}
-      {lista && <ListItem list={lista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />}
+      {filterLista && <Chart list={filterLista} />}
+
+      <label htmlFor='' style={{ width: '200px', margin: '0 auto', }}>Começo:</label>
+      <input type='date' style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onChange={(e) => setDateInitial(new Date(e.target.value).toISOString())} />
+      <label htmlFor='' style={{ width: '200px', margin: '0 auto', }}>Fim:</label>
+      <input type='date' style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onChange={(e) => setDateEnd(new Date(e.target.value).toISOString())} />
+      <button style={{ width: '200px', margin: '0 auto 10px', cursor: 'pointer', }} onClick={calculeDate}>✔️</button>
+      {filterLista && <ListItem list={filterLista} deleteItem={deleteItem} setShowModal={setShowModal} setShowModalInclude={setShowModalInclude} setElementEdit={setElementEdit} />}
       {showModal && elementEdit && <Modal type='edit' elementEdit={elementEdit} onSubmit={(e) => editItem(e, elementEdit.id)} onClick={setShowModal} />}
       {showModalInclude && <Modal type='include' onSubmit={includeValores} onClick={setShowModalInclude} />}
     </>
